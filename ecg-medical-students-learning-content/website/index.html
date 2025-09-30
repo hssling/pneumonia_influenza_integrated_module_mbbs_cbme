@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced ECG Learning Platform - Medical Students</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Section */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            border-radius: 0 0 20px 20px;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo h1 {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .logo p {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 10px 15px;
+            border-radius: 8px;
+        }
+
+        .nav-links a:hover {
+            background: #3498db;
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(45deg, #3498db, #e74c3c);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            border-radius: 20px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            background: white;
+            color: #3498db;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn:hover {
+            background: #f8f9fa;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #3498db;
+        }
+
+        /* Main Content Grid */
+        .main-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .card h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+
+        .card p {
+            color: #7f8c8d;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .feature-list li:before {
+            content: "✓";
+            color: #27ae60;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Interactive Quiz Section */
+        .quiz-section {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%);
+            padding: 50px 20px;
+            border-radius: 20px;
+            margin: 50px 0;
+            text-align: center;
+        }
+
+        .quiz-card {
+            background: white;
+            max-width: 600px;
+            margin: 0 auto;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .quiz-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .quiz-btn:hover {
+            background: #2980b9;
+            transform: scale(1.05);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Module Cards */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 50px 0;
+        }
+
+        .module-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .module-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .module-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .module-icon {
+            font-size: 2rem;
+            margin-right: 15px;
+            color: #3498db;
+        }
+
+        .module-card h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .chapter-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .chapter-list li {
+            margin-bottom: 8px;
+            color: #7f8c8d;
+        }
+
+        /* Statistics Section */
+        .stats-section {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 50px 20px;
+            border-radius: 20px;
+            margin: 50px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #3498db;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+        }
+
+        /* Call to Action */
+        .cta-section {
+            background: linear-gradient(45deg, #2c3e50, #34495e);
+            color: white;
+            padding: 60px 20px;
+            border-radius: 20px;
+            text-align: center;
+            margin: 50px 0;
+        }
+
+        .cta-section h3 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(44, 62, 80, 0.9);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 20px 20px 0 0;
+            margin-top: 50px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 15px;
+            color: #3498db;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-section a {
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #3498db;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .nav-links {
+                margin-top: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>ECG Mastery</h1>
+                    <p>Revolutionary Medical Education Platform</p>
+                </div>
+                <nav class="nav-links">
+                    <a href="#modules">Modules</a>
+                    <a href="#quiz">Interactive Quiz</a>
+                    <a href="#resources">Resources</a>
+                    <a href="#about">About</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <div class="container">
+        <div class="hero">
+            <h2>Master ECG Interpretation with AI-Powered Learning</h2>
+            <p>Transform your understanding of cardiac electrophysiology through comprehensive chapters, interactive quizzes, and cutting-edge AI technologies designed specifically for medical students.</p>
+            <div class="cta-buttons">
+                <a href="#modules" class="btn">Start Learning</a>
+                <a href="#quiz" class="btn btn-secondary">Take Quiz</a>
+            </div>
+        </div>
+
+        <!-- Statistics Section -->
+        <div class="stats-section">
+            <div class="stats-grid">
+                <div>
+                    <div class="stat-number">19</div>
+                    <div class="stat-label">Comprehensive Chapters</div>
+                </div>
+                <div>
+                    <div class="stat-number">75+</div>
+                    <div class="stat-label">Interactive MCQs</div>
+                </div>
+                <div>
+                    <div class="stat-number">3,000+</div>
+                    <div class="stat-label">Pages of Content</div>
+                </div>
+                <div>
+                    <div class="stat-number">AI</div>
+                    <div class="stat-label">Powered Learning</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Features Grid -->
+        <div class="main-grid">
+            <div class="card">
+                <div class="card-icon">📚</div>
+                <h3>Complete ECG Curriculum</h3>
+                <p>From basic cardiac electrophysiology to advanced AI-assisted diagnosis, covering all essential topics for medical students.</p>
+                <ul class="feature-list">
+                    <li>19 Professional Chapters</li>
+                    <li>Evidence-Based Content</li>
+                    <li>AHA/ACC Guidelines Compliance</li>
+                    <li>Clinical Correlation Focus</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🤖</div>
+                <h3>AI-Powered Learning</h3>
+                <p>Experience the future of medical education with personalized learning paths, intelligent assessments, and real-time feedback.</p>
+                <ul class="feature-list">
+                    <li>Personalized Study Plans</li>
+                    <li>Adaptive Difficulty Scaling</li>
+                    <li>Progress Analytics</li>
+                    <li>Smart Recommendations</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">👩‍⚕️</div>
+                <h3>Clinical Excellence</h3>
+                <p>Master emergency ECG interpretation, device management, and complex arrhythmias with real-world case studies.</p>
+                <ul class="feature-list">
+                    <li>STEMI Pattern Recognition</li>
+                    <li>Device Therapy Mastery</li>
+                    <li>Critical Care Applications</li>
+                    <li>Expert Case Studies</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🎯</div>
+                <h3>Assessment & Certification</h3>
+                <p>Comprehensive testing with detailed explanations, aimed at board certification readiness and clinical competency.</p>
+                <ul class="feature-list">
+                    <li>75+ Multiple Choice Questions</li>
+                    <li>Instant Feedback & Explanations</li>
+                    <li>Board Certification Preparation</li>
+                    <li>Progress Tracking</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Interactive Quiz Section -->
+        <div id="quiz" class="quiz-section">
+            <div class="quiz-card">
+                <h3>🧠 Test Your ECG Knowledge</h3>
+                <p>Challenge yourself with this sample ECG interpretation question from our comprehensive quiz bank.</p>
+
+                <div id="question-container">
+                    <h4>Question 1: Cardiac Conduction</h4>
+                    <p>Which ECG interval represents the time required for a cardiac impulse to travel from the SA node through the AV node to ventricular myocardium?</p>
+
+                    <div class="quiz-options">
+                        <button class="quiz-btn" onclick="checkAnswer('PR interval')">PR Interval</button>
+                        <button class="quiz-btn" onclick="checkAnswer('QT interval')">QT Interval</button>
+                        <button class="quiz-btn" onclick="checkAnswer('RR interval')">RR Interval</button>
+                        <button class="quiz-btn" onclick="checkAnswer('ST segment')">ST Segment</button>
+                    </div>
+                </div>
+
+                <div id="result-container" class="hidden">
+                    <h4 id="result-title"></h4>
+                    <p id="result-text"></p>
+                    <p id="explanation"></p>
+                    <button class="quiz-btn" onclick="startNewQuiz()" style="margin-top: 15px;">Try Another Question</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Learning Modules Section -->
+        <div id="modules">
+            <h2 style="text-align: center; color: white; margin: 40px 0; font-size: 2.5rem;">📖 Comprehensive Learning Curriculum</h2>
+
+            <div class="modules-grid">
+                <div class="module-card">
+                    <div class="module-header">
+                        <div class="module-icon">🏗️</div>
+                        <div>
+                            <h4>Unit 1: ECG Fundamentals</h4>
+                            <p>Build a strong foundation in cardiac electrophysiology</p>
+                        </div>
+                    </div>
+                    <ul class="chapter-list">
+                        <li><a href="drafts/chapter1_introduction_to_electrocardiography.md" target="_blank">📄 Chapter 1: Introduction to Electrocardiography</a></li>
+                        <li><a href="drafts/chapter2_ecg_recording_technique_and_lead_systems.md" target="_blank">📄 Chapter 2: Recording Technique & Lead Systems</a></li>
+                        <li><a href="drafts/chapter3_ecg_waves_segments_and_intervals.md" target="_blank">📄 Chapter 3: ECG Waves, Segments & Intervals</a></li>
+                        <li><a href="drafts/chapter4_normal_ecg_patterns_and_variants.md" target="_blank">📄 Chapter 4: Normal ECG Patterns & Variants</a></li>
+                    </ul>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-header">
+                        <div class="module-icon">🫀</div>
+                        <div>
+                            <h4>Unit 2: Ischemic Heart Disease</h4>
+                            <p>Master coronary artery disease and myocardial infarction patterns</p>
+                        </div>
+                    </div>
+                    <ul class="chapter-list">
+                        <li><a href="drafts/chapter5_coronary_artery_disease_and_myocardial_ischemia.md" target="_blank">📄 Chapter 5: Coronary Artery Disease & Ischemia</a></li>
+                        <li><a href="drafts/chapter6_myocardial_infarction_and_ecg_evolution.md" target="_blank">📄 Chapter 6: MI Patterns & Evolution Timeline</a></li>
+                        <li><a href="drafts/chapter7_supraventricular_arrhythmias.md" target="_blank">📄 Chapter 7: Supraventricular Arrhythmias</a></li>
+                        <li><a href="drafts/chapter8_heart_failure_and_cardiomyopathies.md" target="_blank">📄 Chapter 8: Heart Failure & Cardiomyopathies</a></li>
+                    </ul>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-header">
+                        <div class="module-icon">❤️‍🩹</div>
+                        <div>
+                            <h4>Unit 3: Arrhythmias & Devices</h4>
+                            <p>Complete arrhythmia diagnosis and device management</p>
+                        </div>
+                    </div>
+                    <ul class="chapter-list">
+                        <li><a href="drafts/chapter9_ventricular_arrhythmias.md" target="_blank">📄 Chapter 9: Ventricular Arrhythmias</a></li>
+                        <li><a href="drafts/chapter10_conduction_blocks.md" target="_blank">📄 Chapter 10: Conduction Blocks & Bradyarrhythmias</a></li>
+                        <li><a href="drafts/chapter11_device_therapy_and_pacemakers.md" target="_blank">📄 Chapter 11: Device Therapy & Pacemakers</a></li>
+                        <li><a href="drafts/chapter12_ecg_in_special_conditions.md" target="_blank">📄 Chapter 12: ECG in Special Conditions</a></li>
+                    </ul>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-header">
+                        <div class="module-icon">🚑</div>
+                        <div>
+                            <h4>Unit 4: Advanced Applications</h4>
+                            <p>Emergency medicine, sports cardiology, and future technologies</p>
+                        </div>
+                    </div>
+                    <ul class="chapter-list">
+                        <li><a href="drafts/chapter13_ecg_in_critical_and_emergency_conditions.md" target="_blank">📄 Chapter 13: Critical Care & Emergency ECG</a></li>
+                        <li><a href="drafts/chapter14_sports_medicine_and_athletic_heart.md" target="_blank">📄 Chapter 14: Sports Medicine & Athletic Heart</a></li>
+                        <li><a href="drafts/chapter15_toxicology_and_drug_induced_ecg_changes.md" target="_blank">📄 Chapter 15: Toxicology & Drug Effects</a></li>
+                        <li><a href="drafts/chapter16_ecg_interpretation_algorithms_and_computer_assisted_diagnosis.md" target="_blank">📄 Chapter 16: ECG Interpretation Algorithms</a></li>
+                    </ul>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-header">
+                        <div class="module-icon">⚡</div>
+                        <div>
+                            <h4>Unit 5: AI & Future Medicine</h4>
+                            <p>Cutting-edge AI interpretation and digital health innovations</p>
+                        </div>
+                    </div>
+                    <ul class="chapter-list">
+                        <li><a href="drafts/chapter17_clinical_cases_atlas_complex_ecg_scenarios.md" target="_blank">📄 Chapter 17: Clinical Cases Atlas</a></li>
+                        <li><a href="drafts/chapter18_ecg_teaching_and_assessment_methods.md" target="_blank">📄 Chapter 18: ECG Teaching Methods</a></li>
+                        <li><a href="drafts/chapter19_future_of_ecg_ai_machine_learning_and_digital_health.md" target="_blank">📄 Chapter 19: AI, ML & Digital Health Revolution</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resources Section -->
+        <div id="resources" class="card" style="margin: 50px 0;">
+            <h3 style="text-align: center; margin-bottom: 30px;">📚 Educational Resources & Downloads</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+                <div style="text-align: center;">
+                    <div style="font-size: 4rem; margin-bottom: 20px;">📖</div>
+                    <h4>Complete Textbook</h4>
+                    <p>Full 19-chapter ECG education in comprehensive digital format</p>
+                    <a href="#" class="btn" style="margin-top: 15px;">Download PDF Textbook</a>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 4rem; margin-bottom: 20px;">🧠</div>
+                    <h4>MCQ Question Bank</h4>
+                    <p>75+ multiple choice questions with detailed explanations</p>
+                    <a href="#" class="btn" style="margin-top: 15px;">Access Quiz Bank</a>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 4rem; margin-bottom: 20px;">🔬</div>
+                    <h4>Case Study Library</h4>
+                    <p>Complex clinical scenarios with ECG interpretation guidance</p>
+                    <a href="#" class="btn" style="margin-top: 15px;">Browse Cases</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="cta-section">
+            <h3>🚀 Ready to Master ECG Interpretation?</h3>
+            <p>Begin your journey to ECG excellence with our comprehensive, AI-powered learning platform. Join thousands of medical students worldwide who have transformed their understanding of cardiac electrophysiology.</p>
+            <div class="cta-buttons">
+                <a href="http://localhost:8501" class="btn" target="_blank">Launch Interactive Platform</a>
+                <a href="#modules" class="btn btn-secondary">Explore Modules</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>🫀 ECG Mastery Platform</h4>
+                    <p>Revolutionary AI-powered medical education for cardiology excellence.</p>
+                    <p>Featuring 19 comprehensive chapters, interactive assessments, and cutting-edge learning technologies.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>📚 Learning Modules</h4>
+                    <ul>
+                        <li><a href="#modules">ECG Fundamentals</a></li>
+                        <li><a href="#modules">Ischemic Heart Disease</a></li>
+                        <li><a href="#modules">Arrhythmias & Devices</a></li>
+                        <li><a href="#modules">Advanced Applications</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>🛠️ Resources</h4>
+                    <ul>
+                        <li><a href="#resources">Complete Textbook</a></li>
+                        <li><a href="#resources">MCQ Question Bank</a></li>
+                        <li><a href="#resources">Case Study Library</a></li>
+                        <li><a href="#quiz">Interactive Quiz</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>🔗 Connect</h4>
+                    <ul>
+                        <li><a href="#about">About the Platform</a></li>
+                        <li><a href="https://github.com" target="_blank">GitHub Repository</a></li>
+                        <li><a href="mailto:contact@ecgmastery.com">Contact Support</a></li>
+                        <li><a href="#privacy">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px;">
+                <p>&copy; 2025 ECG Mastery Platform. Designed for medical education excellence. | Powered by AI-assisted learning technologies.</p>
+                <p style="margin-top: 10px; font-size: 0.9rem; opacity: 0.8;">
+                    Disclaimer: This educational platform is designed for learning purposes. Always consult with qualified medical professionals for clinical decisions.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentQuizQuestion = 1;
+
+        function checkAnswer(answer) {
+            const questionContainer = document.getElementById('question-container');
+            const resultContainer = document.getElementById('result-container');
+            const resultTitle = document.getElementById('result-title');
+            const resultText = document.getElementById('result-text');
+            const explanation = document.getElementById('explanation');
+
+            if (answer === 'PR interval') {
+                resultTitle.textContent = '✓ Excellent!';
+                resultTitle.style.color = '#27ae60';
+                resultText.textContent = 'Your answer is correct!';
+                explanation.textContent = 'The PR interval represents the time for electrical impulse conduction from SA node through AV node to ventricular myocardium. Normal range: 0.12-0.20 seconds.';
+            } else {
+                resultTitle.textContent = '✗ Incorrect';
+                resultTitle.style.color = '#e74c3c';
+                resultText.textContent = 'The correct answer is PR interval.';
+                if (answer === 'QT interval') {
+                    explanation.textContent = 'QT interval measures ventricular depolarization and repolarization. Try reviewing ECG intervals in Chapter 3.';
+                } else if (answer === 'RR interval') {
+                    explanation.textContent = 'RR interval measures the time between R waves and indicates ventricular rate. Review in Chapter 2.';
+                } else if (answer === 'ST segment') {
+                    explanation.textContent = 'ST segment represents early ventricular repolarization. This is important for ischemia detection in Chapter 5.';
+                }
+            }
+
+            questionContainer.classList.add('hidden');
+            resultContainer.classList.remove('hidden');
+        }
+
+        function startNewQuiz() {
+            const questionContainer = document.getElementById('question-container');
+            const resultContainer = document.getElementById('result-container');
+
+            // Reset for new question
+            questionContainer.classList.remove('hidden');
+            resultContainer.classList.add('hidden');
+
+            // Simulate new question (in full implementation, this would load from database)
+            currentQuizQuestion++;
+            if (currentQuizQuestion > 5) currentQuizQuestion = 1;
+
+            const questions = [
+                '',
+                'Which ECG interval represents the time required for a cardiac impulse to travel from the SA node through the AV node to ventricular myocardium?',
+                'What is the typical heart rate range for first-degree AV block?',
+                'Which ECG finding is most characteristic of cardiac tamponade?',
+                'In which lead is a Q-wave most significant for inferior wall myocardial infarction?',
+                'What is the normal PR interval duration range in adults?'
+            ];
+
+            const answers = [
+                [],
+                ['PR interval', 'QT interval', 'RR interval', 'ST segment'],
+                ['40-60 bpm', '60-100 bpm', '100-150 bpm', '150-200 bpm'],
+                ['Electrical alternans', 'Left bundle branch block', 'Sinus tachycardia', 'P pulmonale'],
+                ['Lead III', 'Lead aVL', 'Lead V6', 'Lead V1'],
+                ['0.08-0.12 seconds', '0.12-0.20 seconds', '0.20-0.24 seconds', '0.24-0.28 seconds']
+            ];
+
+            document.querySelector('#question-container h4').textContent = `Question ${currentQuizQuestion}: ${currentQuizQuestion === 1 ? 'Cardiac Conduction' : currentQuizQuestion === 2 ? 'AV Block' : currentQuizQuestion === 3 ? 'Cardiac Tamponade' : currentQuizQuestion === 4 ? 'Inferior MI' : 'PR Interval'}`;
+            document.querySelector('#question-container p').textContent = questions[currentQuizQuestion];
+
+            const quizButtons = document.querySelectorAll('.quiz-btn');
+            quizButtons.forEach((btn, index) => {
+                btn.textContent = answers[currentQuizQuestion][index];
+                btn.onclick = () => checkAnswer(answers[currentQuizQuestion][index]);
+            });
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animate stats on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            statNumbers.forEach(stat => {
+                const target = parseInt(stat.textContent) || 0;
+                let current = 0;
+                const increment = target / 100;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        stat.textContent = target.toString();
+                        clearInterval(timer);
+                    } else {
+                        stat.textContent = Math.floor(current).toString();
+                    }
+                }, 30);
+            });
+        });
+    </script>
+</body>
+</html>

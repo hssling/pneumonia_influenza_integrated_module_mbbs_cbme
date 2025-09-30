@@ -1,0 +1,48 @@
+# Standard Python gitignore
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Streamlit
+.streamlit/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# Exported content (regenerate as needed)
+export/
+!export/.gitkeep
+
+# Generated images and diagrams (can be regenerated)
+diagrams/
+!diagrams/.gitkeep
+
+# Videos (can be regenerated)
+videos/
+!videos/.gitkeep
+
+# Notes (working drafts)
+notes/
+
+# Local testing files
+test_*.py
+debug_*.py

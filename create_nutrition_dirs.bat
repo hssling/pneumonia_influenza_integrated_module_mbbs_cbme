@@ -1,0 +1,10 @@
+@echo off
+mkdir nutrition-cbme-textbook\drafts
+mkdir nutrition-cbme-textbook\templates
+mkdir nutrition-cbme-textbook\export
+mkdir nutrition-cbme-textbook\notes
+mkdir nutrition-cbme-textbook\mcq_bank
+mkdir nutrition-cbme-textbook\diagrams
+mkdir nutrition-cbme-textbook\videos
+mkdir nutrition-cbme-textbook\website
+mkdir nutrition-cbme-textbook\mcp_servers

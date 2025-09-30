@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Human Anatomy for Medical Students: CBME Framework</title>
+    <meta name="description" content="CBME-aligned comprehensive anatomy textbook with clinical correlations, interactive 3D models, and competency-based assessments for medical students.">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="main-header">
+        <nav class="top-nav">
+            <div class="nav-container">
+                <div class="logo-section">
+                    <h1 class="site-title">Human Anatomy</h1>
+                    <span class="subtitle">CBME Framework</span>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#chapters">Chapters</a></li>
+                    <li><a href="#interactive">Interactive Tools</a></li>
+                    <li><a href="#assessment">Assessment</a></li>
+                    <li><a href="#resources">Resources</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="mobile-menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero-section">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h2>Transforming Anatomy Education Through CBME</h2>
+                    <p>This textbook represents a paradigm shift from memorization-based learning to competency-based medical education, where every anatomical structure is presented with its clinical relevance and application in patient care.</p>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="number">18</span>
+                            <span class="label">Chapters</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="number">150+</span>
+                            <span class="label">CBME Competencies</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="number">80+</span>
+                            <span class="label">Clinical Cases</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="number">500+</span>
+                            <span class="label">Interactive Assessments</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="anatomy-preview">
+                        <img src="assets/images/anatomy-preview.png" alt="Human Anatomy Illustration" onerror="this.style.display='none'">
+                        <div class="placeholder-anatomy">
+                            <div class="body-outline"></div>
+                            <div class="systems-label">Cardiovascular | Respiratory | Musculoskeletal | Nervous</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="features-section">
+            <div class="features-container">
+                <h3>CBME-Aligned Learning Approach</h3>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🧠</div>
+                        <h4>Knowledge Domains</h4>
+                        <p>Progressive development from anatomical structure identification to functional-clinical correlations</p>
+                        <ul>
+                            <li>Basic anatomical knowledge (KS)</li>
+                            <li>Structure-function relationships (KP)</li>
+                            <li>Clinical applications (PC)</li>
+                            <li>Communication skills (COM)</li>
+                            <li>Professional attitudes (AET)</li>
+                        </ul>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">💼</div>
+                        <h4>Entrustment Scales</h4>
+                        <p>Five-level progression from observation to independent practice with full supervision</p>
+                        <ul>
+                            <li>Level 1: Observes (little confidence)</li>
+                            <li>Level 2: Assists with supervision</li>
+                            <li>Level 3: Performs independently in supervised setting</li>
+                            <li>Level 4: Performs independently in most situations</li>
+                            <li>Level 5: Supervises others</li>
+                        </ul>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🩺</div>
+                        <h4>Clinical Integration</h4>
+                        <p>Every anatomical concept linked to clinical practice through case studies and problem-based learning</p>
+                        <ul>
+                            <li>Case-based scenarios</li>
+                            <li>Clinical skill correlations</li>
+                            <li>Pathological correlations</li>
+                            <li>Diagnostic reasoning</li>
+                        </ul>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">👥</div>
+                        <h4>Assessment Framework</h4>
+                        <p>Competency-based evaluation using multiple assessment methods and progressive skill development</p>
+                        <ul>
+                            <li>OSCE stations</li>
+                            <li>MCQ bank with clinical scenarios</li>
+                            <li>Mini-CEX evaluation</li>
+                            <li>Portfolio assessment</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="chapters" class="chapters-section">
+            <div class="chapters-container">
+                <h3>Book Chapters</h3>
+                <div class="chapters-nav">
+                    <div class="chapter-categories">
+                        <button class="category-btn active" data-category="foundation">Foundation (1-4)</button>
+                        <button class="category-btn" data-category="systems">Body Systems (5-14)</button>
+                        <button class="category-btn" data-category="applied">Applied Anatomy (15-18)</button>
+                    </div>
+                </div>
+
+                <div id="foundation-chapters" class="chapters-grid active">
+                    <div class="chapter-card">
+                        <h4>Chapter 1: Basic Concepts in Anatomy</h4>
+                        <p>Fundamental anatomical terminology, planes, embryological foundations, and CBME principles</p>
+                        <div class="chapter-meta">
+                            <span class="competency-count">5 competencies</span>
+                            <span class="case-studies">2 clinical cases</span>
+                        </div>
+                        <a href="chapters/chapter1.html" class="chapter-link">Read Chapter →</a>
+                    </div>
+
+                    <div class="chapter-card">
+                        <h4>Chapter 2: Histology and Cellular Anatomy</h4>
+                        <p>Microscopic structure of tissues and clinical histopathology correlations</p>
+                        <div class="chapter-meta">
+                            <span class="competency-count">5 competencies</span>
+                            <span class="case-studies">3 clinical cases</span>
+                        </div>
+                        <a href="chapters/chapter2.html" class="chapter-link">Read Chapter →</a>
+                    </div>
+
+                    <div class="chapter-card">
+                        <h4>Chapter 3: Skeletal System</h4>
+                        <p>Bone structure, joint mechanics, and musculoskeletal clinical assessment</p>
+                        <div class="chapter-meta">
+                            <span class="competency-count">5 competencies</span>
+                            <span class="case-studies">4 clinical cases</span>
+                        </div>
+                        <a href="chapters/chapter3.html" class="chapter-link">Read Chapter →</a>
+                    </div>
+
+                    <div class="chapter-card">
+                        <h4>Chapter 4: Muscular System</h4>
+                        <p>Muscle structure, neuromuscular function, and motor neuron examination</p>
+                        <div class="chapter-meta">
+                            <span class="competency-count">5 competencies</span>
+                            <span class="case-studies">3 clinical cases</span>
+                        </div>
+                        <a href="chapters/chapter4.html" class="chapter-link">Read Chapter →</a>
+                    </div>
+                </div>
+
+                <div id="systems-chapters" class="chapters-grid">
+                    <!-- Chapters 5-14 will be dynamically added here -->
+                    <div class="coming-soon">
+                        <h4>Body Systems Chapters (5-14)</h4>
+                        <p>Comprehensive coverage of all major organ systems with extensive clinical correlations</p>
+                        <ul>
+                            <li>Chapter 5: Cardiovascular System</li>
+                            <li>Chapter 6: Respiratory System</li>
+                            <li>Chapter 7: Nervous System</li>
+                            <li>Chapter 8: Digestive System</li>
+                            <li>Chapter 9: Urinary System</li>
+                            <li>Chapter 10: Reproductive System</li>
+                            <li>Chapter 11: Endocrine System</li>
+                            <li>Chapter 12: Integumentary System</li>
+                            <li>Chapter 13: Special Senses</li>
+                            <li>Chapter 14: Lymphatic System</li>
+                        </ul>
+                        <button class="preview-btn" onclick="alert('Coming soon!')">Preview Coming Soon</button>
+                    </div>
+                </div>
+
+                <div id="applied-chapters" class="chapters-grid">
+                    <div class="chapter-card">
+                        <h4>Chapter 15: Radiological Anatomy</h4>
+                        <p>Medical imaging interpretation and anatomical correlation across modalities</p>
+                        <div class="chapter-meta">
+                            <span class="competency-count">3 competencies</span>
+                            <span class="case-studies">8 imaging cases</span>
+                        </div>
+                        <a href="chapters/chapter15.html" class="chapter-link">Read Chapter →</a>
+                    </div>
+
+                    <div class="chapter-card">
+                        <h4>Chapter 16: Developmental Anatomy</h4>
+                        <p>Embryological principles and congenital malformation patterns</p>
+                        <div class="chapter-meta">
+                            <span class="competency-count">3 competencies</span>
+                            <span class="case-studies">5 embryology cases</span>
+                        </div>
+                        <a href="chapters/chapter16.html" class="chapter-link">Read Chapter →</a>
+                    </div>
+
+                    <div class="chapter-card">
+                        <h4>Chapter 17: Applied Anatomy</h4>
+                        <p>Surgical approaches, procedural anatomy, and clinical interventions</p>
+                        <div class="chapter-meta">
+                            <span class="competency-count">3 competencies</span>
+                            <span class="case-studies">6 procedural cases</span>
+                        </div>
+                        <a href="chapters/chapter17.html" class="chapter-link">Read Chapter →</a>
+                    </div>
+
+                    <div class="chapter-card">
+                        <h4>Chapter 18: Anatomy in Clinical Practice</h4>
+                        <p>Integration across medical specialties and lifelong anatomical competence</p>
+                        <div class="chapter-meta">
+                            <span class="competency-count">3 competencies</span>
+                            <span class="case-studies">Capstone cases</span>
+                        </div>
+                        <a href="chapters/chapter18.html" class="chapter-link">Read Chapter →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="interactive" class="interactive-section">
+            <div class="interactive-container">
+                <h3>Interactive Learning Tools</h3>
+                <p>Enhance your learning with immersive digital experiences designed specifically for CBME competencies</p>
+
+                <div class="interactive-tools">
+                    <div class="tool-card">
+                        <div class="tool-icon">🪐</div>
+                        <h4>3D Anatomy Models</h4>
+                        <p>Explore anatomical structures in three dimensions with interactive dissection capabilities</p>
+                        <div class="tool-features">
+                            <span>Complete Anatomy Integration</span>
+                            <span>Regional Dissection</span>
+                            <span>Pathological Variations</span>
+                        </div>
+                        <a href="#" class="tool-link">Launch 3D Models →</a>
+                    </div>
+
+                    <div class="tool-card">
+                        <div class="tool-icon">📊</div>
+                        <h4>Virtual Microscopy Lab</h4>
+                        <p>Perfect histological preparations with zoom capabilities and self-assessment</p>
+                        <div class="tool-features">
+                            <span>Tissue Identification</span>
+                            <span>Pathological Correlation</span>
+                            <span>Progressive Difficulty</span>
+                        </div>
+                        <a href="#" class="tool-link">Enter Virtual Lab →</a>
+                    </div>
+
+                    <div class="tool-card">
+                        <div class="tool-icon">🎥</div>
+                        <h4>Surgical Video Library</h4>
+                        <p>Watch surgical procedures with anatomical narration and 3D overlays</p>
+                        <div class="tool-features">
+                            <span>Anatomical Landmarks</span>
+                            <span>Vessel Identification</span>
+                            <span>Procedure Breakdown</span>
+                        </div>
+                        <a href="#" class="tool-link">Browse Videos →</a>
+                    </div>
+
+                    <div class="tool-card">
+                        <div class="tool-icon">🧩</div>
+                        <h4>Case-Based Scenarios</h4>
+                        <p>Solve clinical puzzles that require anatomical knowledge for diagnosis and treatment</p>
+                        <div class="tool-features">
+                            <span>80+ Patient Cases</span>
+                            <span>Progressive Complexity</span>
+                            <span>Immediate Feedback</span>
+                        </div>
+                        <a href="#" class="tool-link">Start Cases →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="assessment" class="assessment-section">
+            <div class="assessment-container">
+                <h3>CBME Competency Assessment</h3>
+                <p>Track your progress through the five competency domains with quantitative and qualitative assessment tools</p>
+
+                <div class="assessment-dashboard">
+                    <div class="competency-domains">
+                        <div class="domain-card">
+                            <div class="domain-header knowledge">
+                                <h4>Knowledge Domain</h4>
+                                <span class="domain-code">KS/KP</span>
+                            </div>
+                            <ul class="competency-list">
+                                <li>Anatomical structure identification</li>
+                                <li>Functional relationships</li>
+                                <li>Structural-functional correlations</li>
+                                <li>Disease mechanism understanding</li>
+                            </ul>
+                        </div>
+
+                        <div class="domain-card">
+                            <div class="domain-header procedures">
+                                <h4>Procedures Domain</h4>
+                                <span class="domain-code">PC</span>
+                            </div>
+                            <ul class="competency-list">
+                                <li>Surface marking and palpation</li>
+                                <li>Clinical examination skills</li>
+                                <li>Surgical landmark identification</li>
+                                <li>Imaging interpretation</li>
+                            </ul>
+                        </div>
+
+                        <div class="domain-card">
+                            <div class="domain-header communication">
+                                <h4>Communication Domain</h4>
+                                <span class="domain-code">COM</span>
+                            </div>
+                            <ul class="competency-list">
+                                <li>Patient explanation skills</li>
+                                <li>Interprofessional communication</li>
+                                <li>Teaching peers and juniors</li>
+                                <li>Complex concept translation</li>
+                            </ul>
+                        </div>
+
+                        <div class="domain-card">
+                            <div class="domain-header attitude">
+                                <h4>Attitude Domain</h4>
+                                <span class="domain-code">AET</span>
+                            </div>
+                            <ul class="competency-list">
+                                <li>Ethical anatomical practices</li>
+                                <li>Respect for human remains</li>
+                                <li>Professional conduct in dissection</li>
+                                <li>Cultural sensitivity</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="assessment-tools">
+                        <h4>Assessment Methods</h4>
+                        <div class="assessment-methods">
+                            <div class="method-item">
+                                <span class="method-icon">📝</span>
+                                <div class="method-content">
+                                    <h5>MCQ Bank</h5>
+                                    <p>500+ clinical case-based questions across all competency domains</p>
+                                    <a href="assessment/mcq-bank.html">Access MCQ Bank →</a>
+                                </div>
+                            </div>
+
+                            <div class="method-item">
+                                <span class="method-icon">🎭</span>
+                                <div class="method-content">
+                                    <h5>OSCE Stations</h5>
+                                    <p>Structured clinical examinations with standardized patient scenarios</p>
+                                    <a href="assessment/osce-stations.html">View OSCE Stations →</a>
+                                </div>
+                            </div>
+
+                            <div class="method-item">
+                                <span class="method-icon">📊</span>
+                                <div class="method-content">
+                                    <h5>Progress Dashboard</h5>
+                                    <p>Real-time competency tracking with personalized learning recommendations</p>
+                                    <a href="assessment/dashboard.html">View Progress →</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="resources" class="resources-section">
+            <div class="resources-container">
+                <h3>Educational Resources</h3>
+                <div class="resource-categories">
+                    <div class="resource-category">
+                        <h4>Study Materials</h4>
+                        <ul>
+                            <li><a href="resources/glossary.html">Anatomical Terminology Glossary</a></li>
+                            <li><a href="resources/competency-checklist.html">CBME Competency Checklist</a></li>
+                            <li><a href="resources/clinical-correlation-guide.html">Clinical Correlation Guide</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="resource-category">
+                        <h4>Visual Resources</h4>
+                        <ul>
+                            <li><a href="resources/diagrams.html">Anatomical Diagrams Collection</a></li>
+                            <li><a href="resources/radiology-atlas.html">Radiological Anatomy Atlas</a></li>
+                            <li><a href="resources/surface-mapping.html">Surface Anatomy Landmarks</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="resource-category">
+                        <h4>Clinical Resources</h4>
+                        <ul>
+                            <li><a href="resources/procedures.html">Common Procedures Guide</a></li>
+                            <li><a href="resources/cases.html">Clinical Case Library</a></li>
+                            <li><a href="resources/physical-exam.html">Physical Examination Videos</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>About CBME Anatomy</h4>
+                    <p>This textbook represents a revolutionary approach to anatomy education, aligning with NMC CBME guidelines to produce competent medical practitioners who understand the clinical relevance of anatomical knowledge.</p>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#chapters">Book Chapters</a></li>
+                        <li><a href="#interactive">Interactive Tools</a></li>
+                        <li><a href="#assessment">Assessment Portal</a></li>
+                        <li><a href="#resources">Educational Resources</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>CBME Resources</h4>
+                    <ul>
+                        <li><a href="https://www.nmc.org.in/" target="_blank">NMC India</a></li>
+                        <li><a href="resources/curriculum.html">CBME Curriculum</a></li>
+                        <li><a href="resources/assessment.html">Assessment Framework</a></li>
+                        <li><a href="resources/faculty-guide.html">Faculty Development</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Contact & Support</h4>
+                    <p>For technical support or academic questions:</p>
+                    <ul>
+                        <li>Email: support@cbmeanatomy.com</li>
+                        <li>Phone: +91-XXX-XXX-XXXX</li>
+                        <li>Address: Department of Anatomy<br>Shridevi Institute of Medical Sciences</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="copyright">
+                    © 2025 Dr. Siddalingaiah H S. All rights reserved.<br>
+                    <small>First CBME-Aligned Anatomy Textbook Edition</small>
+                </div>
+                <div class="social-links">
+                    <a href="#" aria-label="LinkedIn">LinkedIn</a>
+                    <a href="#" aria-label="YouTube">YouTube</a>
+                    <a href="#" aria-label="ResearchGate">ResearchGate</a>
+                    <a href="#" aria-label="ORCID">ORCID</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+# CBME Human Anatomy Textbook - Python Dependencies
+# Core Dependencies
+streamlit>=1.28.0
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Data and File Processing
+pathlib2>=2.3.0
+python-slugify>=8.0.0
+
+# Educational Enhancements
+plotly>=5.17.0
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# Markdown and Documentation Processing
+markdown>=3.4.0
+mistune>=3.0.0
+
+# Utility Libraries
+requests>=2.31.0
+beautifulsoup4>=4.12.0
+
+# Development and Quality Assurance
+pytest>=7.4.0
+black>=23.0.0
+isort>=5.12.0
+pylint>=2.17.0
+mypy>=1.5.0
+
+# Optional: For Pandoc integration
+# Note: Pandoc is installed separately via system packages
+
+# Performance and Caching
+streamlit-caching
+streamlit-lottie
+
+# Educational Components
+streamlit-aggrid>=0.3.0
+streamlit-pandas-profiling
+
+# Security and Best Practices
+python-dotenv>=1.0.0
+
+# Compatibility
+typing_extensions>=4.7.0
+dataclasses-json>=0.5.0
+
+# Packaging and Distribution
+setuptools>=65.0.0
+wheel>=0.40.0
+
+# Freeze current environment versions
+# pip freeze > requirements.txt

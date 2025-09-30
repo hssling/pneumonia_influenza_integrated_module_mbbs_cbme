@@ -1,0 +1,68 @@
+# Python virtual environment
+venv/
+.env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Streamlit
+.streamlit/
+
+# Temporary files
+*.tmp
+*.log
+.DS_Store
+
+# OS generated files
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+
+# Data files
+*.db
+*.sqlite
+
+# Large media files
+videos/
+*.mp4
+*.mov
+*.avi
+
+# Large content directories - exclude from git to keep repo under 100MB
+drafts/
+diagrams/
+videos/
+mcq_bank/
+mcp_servers/
+notes/
+website/
+export/
+build/
+dist/
+
+# Documentation builds
+docs/build/
+docs/source/_build/
+
+# Node modules if any
+node_modules/
+
+# Session files
+.nbsessions/
+
+# Generated content that should not be versioned
+mcq_bank/generated/
+
+# Pandoc and large binary files
+pandoc/
+*.exe
+*.zip
+
+# Keep only these essential files
+!export/compiled/complete_nutrition_textbook.md
+!templates/
+!templates/nutrition_chapter_template.md
+!drafts/nutrition_cbme_outline.md

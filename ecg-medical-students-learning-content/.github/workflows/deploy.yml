@@ -1,0 +1,222 @@
+name: 🚀 Deploy ECG Learning Platform
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  # Streamlit Cloud Deployment
+  deploy-streamlit:
+    runs-on: ubuntu-latest
+    steps:
+    - name: 🔄 Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: 🐍 Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+        cache: 'pip'
+
+    - name: 📦 Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install streamlit pandas plotly
+
+    - name: 🔍 Lint with flake8
+      run: |
+        pip install flake8
+        # stop the build if there are Python syntax errors or undefined names
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        # exit-zero treats all errors as warnings
+        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+
+    - name: 📊 Validate Application
+      run: |
+        streamlit hello --version
+        python -c "import streamlit_app; print('✓ App structure valid')"
+
+    # Streamlit Cloud deployment requires manual setup via streamlit.io
+    # This step validates the app is ready for deployment
+    - name: ✅ Deployment Validation
+      run: |
+        echo "🎯 ECG Learning Platform Ready for Streamlit Cloud Deployment"
+        echo "📝 Manual deployment steps:"
+        echo "   1. Go to share.streamlit.io"
+        echo "   2. Connect GitHub repository: hssling/ecg_handbook_for_mbbs_and_pg_students_cbme"
+        echo "   3. Set main file: streamlit_app.py"
+        echo "   4. Deploy and get public URL"
+
+  # GitHub Pages Deployment for Website
+  deploy-pages:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+    steps:
+    - name: 🔄 Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: 🏗️ Setup Node.js for HTML Minification
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+
+    - name: 📦 Install HTML Dependencies
+      run: |
+        npm install -g html-minifier-terser
+        npm install -g @multicloud/slate
+
+    - name: 📄 Validate HTML Structure
+      run: |
+        if [ -f "website/index.html" ]; then
+          echo "✓ Website index.html found"
+        else
+          echo "❌ Website index.html missing"
+          exit 1
+        fi
+
+    - name: 💪 Minify HTML
+      run: |
+        mkdir -p docs
+        html-minifier-terser --collapse-whitespace --remove-comments --minify-css true --minify-js true website/index.html -o docs/index.html
+        echo "✓ HTML minified and copied to docs/"
+
+    - name: 📝 Create Docs Index
+      run: |
+        cp website/index.html docs/ 2>/dev/null || cp docs/index.html docs/index-orig.html
+        echo "✓ Documentation files prepared"
+
+    - name: 🚀 Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./docs
+        cname: ecg.hssling.dev # Optional custom domain
+
+  # Repository Health Check
+  health-check:
+    runs-on: ubuntu-latest
+    steps:
+    - name: 🔄 Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: 📊 Code Quality Metrics
+      run: |
+        echo "📄 Content Files:"
+        find . -name "*.md" -type f | wc -l | xargs echo "Markdown files:"
+        find . -name "*.html" -type f | wc -l | xargs echo "HTML files:"
+        find . -name "*.py" -type f | wc -l | xargs echo "Python files:"
+
+        echo "📊 Repository Size:"
+        du -sh . --exclude=.git
+
+    - name: ✅ Repository Integrity Check
+      run: |
+        # Check for required files
+        required_files=("README.md" "streamlit_app.py" "website/index.html" ".gitignore")
+        for file in "${required_files[@]}"; do
+          if [ -f "$file" ]; then
+            echo "✓ $file found"
+          else
+            echo "❌ $file missing"
+            exit 1
+          fi
+        done
+
+        # Check directory structure
+        if [ -d "drafts" ]; then echo "✓ Drafts directory exists"; else echo "❌ Drafts missing"; fi
+        if [ -d "mcq_bank" ]; then echo "✓ MCQ bank exists"; else echo "❌ MCQ bank missing"; fi
+        if [ -d "website" ]; then echo "✓ Website directory exists"; else echo "❌ Website missing"; fi
+
+    - name: 🔍 Chapter Content Validation
+      run: |
+        chapter_count=$(find drafts/ -name "chapter*.md" | wc -l)
+        echo "📚 Chapters found: $chapter_count"
+
+        if [ "$chapter_count" -ge 19 ]; then
+          echo "✅ Full chapter set ($chapter_count chapters)"
+        else
+          echo "⚠️  Partial chapter set ($chapter_count chapters)"
+        fi
+
+  # Automated Testing
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: 🔄 Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: 🐍 Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+
+    - name: 📦 Install Test Dependencies
+      run: |
+        pip install pytest pytest-cov streamlit pandas
+
+    - name: 🧪 Run Basic Tests
+      run: |
+        # Create basic test for app functionality
+        cat > test_app.py << EOF
+        import pytest
+        import sys
+        import os
+        def test_imports():
+            try:
+                import streamlit as st
+                assert st is not None
+            except ImportError:
+                pytest.fail("Streamlit not available")
+        def test_file_structure():
+            required_files = ['streamlit_app.py', 'website/index.html', 'README.md', '.gitignore']
+            for file in required_files:
+                assert os.path.exists(file), f"{file} not found"
+        def test_chapters_exist():
+            import glob
+            chapters = glob.glob('drafts/chapter*.md')
+            assert len(chapters) >= 19, f"Only {len(chapters)} chapters found, expected at least 19"
+        EOF
+
+        python -m pytest test_app.py -v --tb=short
+        rm test_app.py
+
+  # Notification on Success
+  notify-success:
+    needs: [deploy-streamlit, deploy-pages, health-check, test]
+    runs-on: ubuntu-latest
+    if: success()
+    steps:
+    - name: 🎉 Success Notification
+      run: |
+        echo "🎯 ECG Learning Platform Deployment Successful!"
+        echo "📊 Platform Statistics:"
+        echo "   • 19 Complete ECG Chapters"
+        echo "   • Interactive Streamlit Application"
+        echo "   • Professional HTML Website"
+        echo "   • 75+ MCQ Assessment Questions"
+        echo "   • AI-Powered Learning Features"
+        echo ""
+        echo "🚀 Deployment URLs:"
+        echo "   • Streamlit App: https://share.streamlit.io/hssling/ecg_handbook_for_mbbs_and_pg_students_cbme/main/streamlit_app.py"
+        echo "   • GitHub Pages: https://hssling.github.io/ecg_handbook_for_mbbs_and_pg_students_cbme/"
+        echo "   • Repository: https://github.com/hssling/ecg_handbook_for_mbbs_and_pg_students_cbme"
+
+  # Notification on Failure
+  notify-failure:
+    needs: [deploy-streamlit, deploy-pages, health-check, test]
+    runs-on: ubuntu-latest
+    if: failure()
+    steps:
+    - name: ❌ Failure Notification
+      run: |
+        echo "❌ ECG Platform Deployment Failed"
+        echo "🔍 Check the logs above for detailed error information"
+        echo "🛠️ Common solutions:"
+        echo "   • Verify all required files exist"
+        echo "   • Check Python dependencies in requirements.txt"
+        echo "   • Ensure Streamlit app structure is correct"
+        echo "   • Validate HTML and JavaScript syntax"
