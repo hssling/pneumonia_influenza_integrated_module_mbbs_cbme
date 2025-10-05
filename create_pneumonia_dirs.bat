@@ -1,0 +1,15 @@
+@echo off
+mkdir "pneumonia-immunization-cbme-training\activities"
+mkdir "pneumonia-immunization-cbme-training\assessments"
+mkdir "pneumonia-immunization-cbme-training\case_studies"
+mkdir "pneumonia-immunization-cbme-training\drafts"
+mkdir "pneumonia-immunization-cbme-training\mcq_bank"
+mkdir "pneumonia-immunization-cbme-training\notes"
+mkdir "pneumonia-immunization-cbme-training\patient_education"
+mkdir "pneumonia-immunization-cbme-training\screening_protocols"
+mkdir "pneumonia-immunization-cbme-training\student_handouts"
+mkdir "pneumonia-immunization-cbme-training\teaching_materials"
+mkdir "pneumonia-immunization-cbme-training\templates"
+mkdir "pneumonia-immunization-cbme-training\videos"
+mkdir "pneumonia-immunization-cbme-training\website"
+echo Pneumonia module directories created successfully!
